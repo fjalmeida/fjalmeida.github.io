@@ -6,16 +6,13 @@
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#FF0000" />
   <link rel="icon" href="icons/icon-192.png" />
+  <meta http-equiv="refresh" content="0; url=https://m.youtube.com" />
   <title>YouTube PWA</title>
 </head>
 <body>
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
-    }
-
-    // Redirect to mobile YouTube
-    window.location.replace("https://m.youtube.com");
+    // JavaScript fallback if meta refresh fails
+    window.location.href = "https://m.youtube.com";
   </script>
 </body>
 </html>
