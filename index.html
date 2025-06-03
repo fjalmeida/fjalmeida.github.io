@@ -6,23 +6,13 @@
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#FF0000" />
   <link rel="icon" href="icons/icon-192.png" />
+  <meta http-equiv="refresh" content="0; url=https://m.youtube.com" />
   <title>YouTube PWA</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background: black;
-    }
-    iframe {
-      border: none;
-      width: 100vw;
-      height: 100vh;
-    }
-  </style>
 </head>
 <body>
-  <iframe src="https://m.youtube.com" allowfullscreen></iframe>
+  <script>
+    // JavaScript fallback if meta refresh fails
+    window.location.href = "https://m.youtube.com";
+  </script>
 </body>
 </html>
