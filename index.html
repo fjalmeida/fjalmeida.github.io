@@ -1,35 +1,53 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="manifest" href="manifest.json" />
-
-  <meta name="theme-color" content="#FF0000" />
-
+  <meta name="theme-color" content="#000000" />
   <link rel="icon" href="icons/icon-192.png" />
-
-  <meta http-equiv="refresh" content="0; url=https://m.youtube.com" />
-
   <title>YouTube PWA</title>
-
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      background: #111;
+      color: #fff;
+    }
+    .message {
+      max-width: 300px;
+      line-height: 1.6;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="message" id="status">
+    Checking app mode...
+  </div>
 
   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
 
-    // JavaScript fallback if meta refresh fails
+    const isPWA =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
 
-    window.location.href = "https://m.youtube.com";
-
+    if (isPWA) {
+      window.location.href = "https://m.youtube.com";
+    } else {
+      document.getElementById("status").innerHTML = `
+        <strong>Please install this app first.</strong><br><br>
+        Open this page in your mobile browser and select<br>
+        <em>"Add to Home Screen"</em> from the menu.
+      `;
+    }
   </script>
-
 </body>
-
 </html>
