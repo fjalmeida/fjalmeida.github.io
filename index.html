@@ -4,30 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#FF0000" />
   <link rel="icon" href="icons/icon-192.png" />
   <title>YouTube PWA</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      background: #111;
       font-family: sans-serif;
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
-      background: #111;
-      color: #fff;
     }
-    .message {
+    #splash {
+      text-align: center;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+    #splash img {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 20px;
+    }
+    #message {
       max-width: 300px;
+      text-align: center;
       line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <div class="message" id="status">
-    Checking app mode...
+  <div id="splash">
+    <img src="icons/icon-192.png" alt="YouTube Logo" />
+    <div id="message">Loading YouTube...</div>
   </div>
 
   <script>
@@ -39,15 +54,19 @@
       window.matchMedia('(display-mode: standalone)').matches ||
       window.navigator.standalone === true;
 
-    if (isPWA) {
-      window.location.href = "https://m.youtube.com";
-    } else {
-      document.getElementById("status").innerHTML = `
-        <strong>Please install this app first.</strong><br><br>
-        Open this page in your mobile browser and select<br>
-        <em>"Add to Home Screen"</em> from the menu.
-      `;
-    }
+    setTimeout(() => {
+      if (isPWA) {
+        window.location.href = "https://m.youtube.com";
+      } else {
+        document.getElementById("message").innerHTML = `
+          <strong>Please install this app first.</strong><br><br>
+          Open this page in your mobile browser and select<br>
+          <em>"Add to Home Screen"</em> from the menu.
+        `;
+      }
+
+      document.getElementById("splash").style.opacity = 0;
+    }, 2000); // 2 seconds splash duration
   </script>
 </body>
 </html>
