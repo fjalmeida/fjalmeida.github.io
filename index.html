@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#FF0000" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="icons/icon-192.png" />
   <title>YouTube PWA</title>
   <style>
@@ -55,7 +52,7 @@
       window.navigator.standalone === true
     );
 
-    // Wait for both to finish: splash + PWA check
+    // Wait for both splash delay and PWA detection to finish
     Promise.all([splashDelay, detectPWA]).then(([_, isPWA]) => {
       if (isPWA) {
         window.location.href = "https://m.youtube.com";
